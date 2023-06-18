@@ -1,0 +1,112 @@
+﻿<Window x:Class="Admin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Admin"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="408.279" Width="1043" Background="#FF494949" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="7"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.785"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.742"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-0.167"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-0.891"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="contentPresenter">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.788"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="contentPresenter">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.788"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="contentPresenter">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-0.035"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="contentPresenter">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-0.189"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.OpacityMask)" Storyboard.TargetName="contentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="rectangle" Fill="#666565" RadiusY="9.5" RadiusX="9.5" Stroke="black" StrokeThickness="4" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5">
+                                <ContentPresenter.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <DataGrid AutoGenerateColumns="True" x:Name="admin" HorizontalAlignment="Left" Height="350" Margin="307,10,0,0" VerticalAlignment="Top" Width="718" Background="#FF6E6A6A"/>
+        <Button Style="{DynamicResource ButtonStyle1}"  Content="Add" HorizontalAlignment="Left" Margin="206,28,0,0" VerticalAlignment="Top" Width="84" Height="25" Foreground="White" Click="Button_Click_2"/>
+        <Button Style="{DynamicResource ButtonStyle1}"  Content="Delete" HorizontalAlignment="Left" Margin="206,69,0,0" VerticalAlignment="Top" Width="84" Height="24" Foreground="White" Click="Button_Click_1"/>
+        <Button Style="{DynamicResource ButtonStyle1}"  Content="Сhange" HorizontalAlignment="Left" Margin="206,112,0,0" VerticalAlignment="Top" Width="84" Height="24" Foreground="White" BorderBrush="#FF636060" Click="Button_Click"/>
+        <TextBox x:Name="id_role" HorizontalAlignment="Left" Height="25" Margin="10,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox x:Name="Login" HorizontalAlignment="Left" Height="24" Margin="9,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox x:Name="Pass" HorizontalAlignment="Left" Height="24" Margin="9,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Height="24" Margin="10,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="asd" Margin="57,11,0,0" TextWrapping="Wrap" Text="id role" VerticalAlignment="Top" Height="17" Width="39" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="61,68,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Height="16" Width="33" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="62,127,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Height="17" Width="35" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="52,188,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Height="17" Width="55" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="62,250,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Height="17" Width="37" Foreground="White"/>
+        <TextBox x:Name="Phone" HorizontalAlignment="Left" Height="25" Margin="10,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBlock HorizontalAlignment="Left" Margin="61,314,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="47" Height="17" Foreground="White"/>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="accept"  Content="Accept" HorizontalAlignment="Left" Margin="206,150,0,0" VerticalAlignment="Top" Width="84" Height="23" Foreground="White" Click="accept_Click"/>
+
+    </Grid>
+</Window>
